@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply font-sans text-base leading-relaxed;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
 /* index.css */
 .perspective {
   perspective: 1000px;

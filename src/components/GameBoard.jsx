@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "./Card";
 import pet1 from "../assets/pet1.png";
 import pet2 from "../assets/pet2.png";
@@ -12,7 +12,7 @@ import pet8 from "../assets/pet8.png";
 function shuffleDeck(images) {
   return [...images, ...images]
     .map((image, index) => ({
-      id: index + Math.random(), // id único con número random para evitar keys repetidas al resetear
+      id: index + Math.random(),
       image,
     }))
     .sort(() => Math.random() - 0.5);
@@ -26,7 +26,13 @@ export default function GameBoard({ playerName }) {
   const [matched, setMatched] = useState([]);
   const [isBusy, setIsBusy] = useState(false);
   const [moves, setMoves] = useState(0);
-  const [manualWin, setManualWin] = useState(false);
+  const [showWinModal, setShowWinModal] = useState(false);
+
+  useEffect(() => {
+    if (matched.length === cards.length) {
+      setShowWinModal(true);
+    }
+  }, [matched, cards]);
 
   const handleClick = (card) => {
     if (
@@ -57,45 +63,46 @@ export default function GameBoard({ playerName }) {
     }
   };
 
-  const gameWon = matched.length === cards.length;
-
   const resetGame = () => {
     setCards(shuffleDeck(images));
     setFlipped([]);
     setMatched([]);
     setMoves(0);
     setIsBusy(false);
-    setManualWin(false);
+    setShowWinModal(false);
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-primary text-white p-4">
+    <div className="min-h-screen w-full flex flex-col items-center justify-start bg-neutral-200 text-neutral-900 p-4">
       <header className="w-full flex justify-between items-center mb-4 px-2">
         <div className="font-semibold text-lg">
-          Player: <span className="text-yellow-300">{playerName}</span>
+          Player: <span className="text-neutral-600">{playerName}</span>
         </div>
         <div className="font-semibold text-lg">
-          Movimientos: <span className="text-yellow-300">{moves}</span>
+          Movimientos: <span className="text-neutral-600">{moves}</span>
         </div>
       </header>
 
-      {/* Botones */}
-      <div className="mb-4 flex gap-4">
+      <p className="text-neutral-500 mb-4 text-center max-w-xs">
+        Gira las cartas y encuentra todas las parejas iguales.
+      </p>
+
+      <div className="mb-4 flex flex-wrap gap-4">
         <button
-          className="px-4 py-2 bg-green-600 rounded text-white hover:bg-green-700 transition"
-          onClick={() => setManualWin(true)}
+          className="px-4 py-2 bg-neutral-900 text-neutral-100 rounded hover:bg-neutral-800 transition"
+          onClick={() => setShowWinModal(true)}
         >
           Ganar (prueba)
         </button>
         <button
-          className="px-4 py-2 bg-red-600 rounded text-white hover:bg-red-700 transition"
+          className="px-4 py-2 bg-neutral-900 text-neutral-100 rounded hover:bg-neutral-800 transition"
           onClick={resetGame}
         >
           Reiniciar juego
         </button>
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-[600px]">
         {cards.map((card) => (
           <Card
             key={card.id}
@@ -107,16 +114,16 @@ export default function GameBoard({ playerName }) {
         ))}
       </div>
 
-      {(gameWon || manualWin) && (
+      {showWinModal && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-20">
-          <div className="bg-green-600 rounded-lg p-6 text-center max-w-sm mx-4 shadow-lg">
+          <div className="bg-neutral-50 text-neutral-900 rounded-lg p-6 text-center max-w-sm mx-4 shadow-lg">
             <h2 className="text-3xl font-bold mb-2">
-              ¡Buenale, ganaste {playerName}!
+              ¡Buenale, encontraste todas las parejas! {playerName}!
             </h2>
             <p className="mb-4">Movimientos realizados: {moves}</p>
             <button
-              className="bg-white text-green-600 font-semibold px-4 py-2 rounded"
-              onClick={() => setManualWin(false)}
+              className="bg-neutral-900 text-neutral-100 font-semibold px-4 py-2 rounded hover:bg-neutral-800 transition"
+              onClick={() => setShowWinModal(false)}
             >
               Cerrar
             </button>
