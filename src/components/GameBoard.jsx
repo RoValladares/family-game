@@ -2,25 +2,28 @@ import { useState, useEffect } from "react";
 import { FiRefreshCw } from "react-icons/fi";
 import Card from "./Card";
 
-import pet1 from "../assets/pet1.png";
-import pet2 from "../assets/pet2.png";
-import pet3 from "../assets/pet3.png";
-import pet4 from "../assets/pet4.png";
-import pet5 from "../assets/pet5.png";
-import pet6 from "../assets/pet6.jpg";
-import pet7 from "../assets/pet7.png";
-import pet8 from "../assets/pet8.png";
+// ✅ Nuevas imágenes con `pairId`
+import cat from "../assets/cat.png";
+import catPair from "../assets/cat_pair.png";
+import dog from "../assets/dog.png";
+import dogPair from "../assets/dog_pair.png";
+import bird from "../assets/bird.png";
+import birdPair from "../assets/bird_pair.png";
+import fish from "../assets/fish.png";
+import fishPair from "../assets/fish_pair.png";
 
+// Mezcla el deck con pairId
 function shuffleDeck(images) {
-  return [...images, ...images]
+  return [...images]
     .map((image, index) => ({
       id: index + Math.random(),
-      image,
+      pairId: image.pairId,
+      image: image.src,
     }))
     .sort(() => Math.random() - 0.5);
 }
 
-// Componente del botón de reset con icono `FiRefreshCw`
+// Botón de reinicio con icono
 function ResetButton({ onClick }) {
   return (
     <button
@@ -35,7 +38,16 @@ function ResetButton({ onClick }) {
 }
 
 export default function GameBoard({ playerName }) {
-  const images = [pet1, pet2, pet3, pet4, pet5, pet6, pet7, pet8];
+  const images = [
+    { src: cat, pairId: 1 },
+    { src: catPair, pairId: 1 },
+    { src: dog, pairId: 2 },
+    { src: dogPair, pairId: 2 },
+    { src: bird, pairId: 3 },
+    { src: birdPair, pairId: 3 },
+    { src: fish, pairId: 4 },
+    { src: fishPair, pairId: 4 },
+  ];
 
   const [cards, setCards] = useState(() => shuffleDeck(images));
   const [flipped, setFlipped] = useState([]);
@@ -66,7 +78,7 @@ export default function GameBoard({ playerName }) {
     if (newFlipped.length === 2) {
       setMoves((m) => m + 1);
 
-      if (newFlipped[0].image === newFlipped[1].image) {
+      if (newFlipped[0].pairId === newFlipped[1].pairId) {
         setMatched((prev) => [...prev, newFlipped[0].id, newFlipped[1].id]);
         setTimeout(() => setFlipped([]), 500);
       } else {

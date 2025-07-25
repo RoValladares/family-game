@@ -19,10 +19,10 @@ export default function StartScreen({ onStart }) {
         fadeOut ? "opacity-0" : "opacity-100"
       }`}
     >
-      <h1 className="text-4xl font-bold mb-4">Family Game</h1>
+      <h1 className="text-4xl font-bold mb-4">Encuentra las Parejas</h1>
 
       <p className="text-neutral-500 mb-6 max-w-xs text-center">
-        Gira las cartas y encuentra todas las parejas iguales. Escribe tu nombre y comienza.
+        Gira las cartas y encuentra todas las parejas iguales. Escribe tu nombre o lo que sea y comienza.
       </p>
 
       <input
@@ -37,7 +37,7 @@ export default function StartScreen({ onStart }) {
         onClick={handleStart}
         className="px-6 py-2 bg-neutral-900 text-neutral-100 rounded hover:bg-neutral-800 transition"
       >
-        Play Game
+        Demole
       </button>
     </div>
   );
