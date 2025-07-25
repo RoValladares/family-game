@@ -73,7 +73,7 @@ export default function GameBoard({ playerName }) {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-start bg-neutral-200 text-neutral-900 p-4">
+    <div className="min-h-screen w-full flex flex-col items-center justify-start bg-neutral-200 text-neutral-900 p-4 overflow-x-hidden transition-opacity duration-500 opacity-0 animate-fadeIn">
       <header className="w-full flex justify-between items-center mb-4 px-2">
         <div className="font-semibold text-lg">
           Player: <span className="text-neutral-600">{playerName}</span>
@@ -88,12 +88,12 @@ export default function GameBoard({ playerName }) {
       </p>
 
       <div className="mb-4 flex flex-wrap gap-4">
-        <button
+        {/* <button
           className="px-4 py-2 bg-neutral-900 text-neutral-100 rounded hover:bg-neutral-800 transition"
           onClick={() => setShowWinModal(true)}
         >
           Ganar (prueba)
-        </button>
+        </button> */}
         <button
           className="px-4 py-2 bg-neutral-900 text-neutral-100 rounded hover:bg-neutral-800 transition"
           onClick={resetGame}
@@ -102,7 +102,7 @@ export default function GameBoard({ playerName }) {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-[600px]">
+      <div className="grid grid-cols-4 gap-4 w-full max-w-[600px]">
         {cards.map((card) => (
           <Card
             key={card.id}
