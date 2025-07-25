@@ -30,7 +30,7 @@ function ResetButton({ onClick }) {
       onClick={onClick}
       aria-label="Reiniciar juego"
       title="Reiniciar juego"
-      className="p-3 rounded-full bg-neutral-900 text-neutral-100 hover:bg-neutral-800 transition transform hover:rotate-90"
+      className="p-3 rounded-full bg-blue-900 text-white hover:bg-blue-800 transition transform hover:rotate-90"
     >
       <FiRefreshCw className="w-6 h-6" />
     </button>
@@ -101,54 +101,56 @@ export default function GameBoard({ playerName }) {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-start bg-neutral-200 text-neutral-900 p-4 overflow-x-hidden transition-opacity duration-500 opacity-0 animate-fadeIn">
-      <header className="w-full flex justify-between items-center mb-4 px-2">
-        <div className="font-semibold text-lg">
-          Player: <span className="text-neutral-600">{playerName}</span>
+    <div className="flex flex-col min-h-screen bg-blue-900 text-white">
+      <main className="flex-grow flex flex-col items-center justify-start p-4">
+        <header className="w-full flex justify-between items-center mb-4 px-2">
+          <div className="font-semibold text-lg">
+            Player: <span className="text-blue-200">{playerName}</span>
+          </div>
+          <div className="font-semibold text-lg">
+            Movimientos: <span className="text-blue-200">{moves}</span>
+          </div>
+        </header>
+
+        <div className="mb-4 flex flex-wrap gap-4">
+          <ResetButton onClick={resetGame} />
         </div>
-        <div className="font-semibold text-lg">
-          Movimientos: <span className="text-neutral-600">{moves}</span>
-        </div>
-      </header>
 
-      <div className="mb-4 flex flex-wrap gap-4">
-        <ResetButton onClick={resetGame} />
-      </div>
-
-      <div className="w-full flex justify-center">
-        <div className="grid grid-cols-4 gap-2 w-full max-w-[600px] mx-auto px-2 box-border overflow-hidden">
-          {cards.map((card) => (
-            <Card
-              key={card.id}
-              card={card}
-              handleClick={handleClick}
-              isFlipped={!!flipped.find((f) => f.id === card.id)}
-              isMatched={matched.includes(card.id)}
-            />
-          ))}
-        </div>
-      </div>
-
-      <footer className="mt-8 text-center text-neutral-500 text-sm">
-        © 2025 Created by Rodrigo Valladares — Frontend Developer Jr.
-      </footer>
-
-      {showWinModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-20">
-          <div className="bg-neutral-50 text-neutral-900 rounded-lg p-6 text-center max-w-sm mx-4 shadow-lg">
-            <h2 className="text-3xl font-bold mb-2">
-              ¡Buenale, encontraste todas las parejas! {playerName}!
-            </h2>
-            <p className="mb-4">Movimientos realizados: {moves}</p>
-            <button
-              className="bg-neutral-900 text-neutral-100 font-semibold px-4 py-2 rounded hover:bg-neutral-800 transition"
-              onClick={() => setShowWinModal(false)}
-            >
-              Cerrar
-            </button>
+        <div className="w-full flex justify-center">
+          <div className="grid grid-cols-4 gap-2 w-full max-w-[600px] mx-auto px-2 box-border overflow-hidden">
+            {cards.map((card) => (
+              <Card
+                key={card.id}
+                card={card}
+                handleClick={handleClick}
+                isFlipped={!!flipped.find((f) => f.id === card.id)}
+                isMatched={matched.includes(card.id)}
+              />
+            ))}
           </div>
         </div>
-      )}
+
+        {showWinModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-20">
+            <div className="bg-blue-100 text-blue-900 rounded-lg p-6 text-center max-w-sm mx-4 shadow-lg">
+              <h2 className="text-3xl font-bold mb-2">
+                ¡Buenale, encontraste todas las parejas! {playerName}!
+              </h2>
+              <p className="mb-4">Movimientos realizados: {moves}</p>
+              <button
+                className="bg-blue-900 text-white font-semibold px-4 py-2 rounded hover:bg-blue-800 transition"
+                onClick={() => setShowWinModal(false)}
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        )}
+      </main>
+
+      <footer className="bg-blue-800 text-center text-blue-100 text-sm p-4">
+        © 2025 Created by Rodrigo Valladares — Frontend Developer Jr.
+      </footer>
     </div>
   );
 }
