@@ -148,7 +148,7 @@ export default function GameBoard({ playerName }) {
         )}
       </main>
 
-      <footer className="bg-blue-800 text-center text-blue-100 text-sm p-4">
+      <footer className="text-center text-neutral-500 text-sm p-4">
         © 2025 Created by Rodrigo Valladares — Frontend Developer Jr.
       </footer>
     </div>

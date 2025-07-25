@@ -9,20 +9,20 @@ export default function StartScreen({ onStart }) {
       setFadeOut(true);
       setTimeout(() => {
         onStart(name);
-      }, 500); // coincide con la duración del fade
+      }, 500);
     }
   };
 
   return (
     <div
-      className={`min-h-screen flex flex-col items-center justify-center bg-neutral-200 text-neutral-900 p-4 transition-opacity duration-500 ${
+      className={`min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-neutral-100 p-4 transition-opacity duration-500 ${
         fadeOut ? "opacity-0" : "opacity-100"
       }`}
     >
-      <h1 className="text-4xl font-bold mb-4">Encuentra las Parejas</h1>
+      <h1 className="text-5xl font-bold mb-4 text-center">Encuentra las Parejas</h1>
 
-      <p className="text-neutral-500 mb-6 max-w-xs text-center">
-        Gira las cartas y encuentra todas las parejas iguales. Escribe tu nombre o lo que sea y comienza.
+      <p className="text-blue-200 mb-6 max-w-xs text-center">
+        Gira las cartas y encuentra todas las parejas correctas. Escribe tu nombre y comienza.
       </p>
 
       <input
@@ -30,14 +30,14 @@ export default function StartScreen({ onStart }) {
         placeholder="Tu nombre"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="p-3 w-64 border border-neutral-400 rounded focus:outline-none focus:border-neutral-600 mb-4 text-neutral-900"
+        className="p-3 w-64 border border-blue-300 bg-blue-50 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 text-blue-900 placeholder-blue-400"
       />
 
       <button
         onClick={handleStart}
-        className="px-6 py-2 bg-neutral-900 text-neutral-100 rounded hover:bg-neutral-800 transition"
+        className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 transition text-blue-50 font-semibold shadow-md"
       >
-        Demole
+        !Demole!
       </button>
     </div>
   );
