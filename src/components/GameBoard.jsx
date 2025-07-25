@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { FiRefreshCw } from "react-icons/fi";
 import Card from "./Card";
+
 import pet1 from "../assets/pet1.png";
 import pet2 from "../assets/pet2.png";
 import pet3 from "../assets/pet3.png";
@@ -18,29 +20,16 @@ function shuffleDeck(images) {
     .sort(() => Math.random() - 0.5);
 }
 
-// Componente para botón de reiniciar con icono y tooltip
+// Componente del botón de reset con icono `FiRefreshCw`
 function ResetButton({ onClick }) {
   return (
     <button
       onClick={onClick}
       aria-label="Reiniciar juego"
       title="Reiniciar juego"
-      className="p-2 rounded-full bg-neutral-900 text-neutral-100 hover:bg-neutral-800 transition flex items-center justify-center"
+      className="p-3 rounded-full bg-neutral-900 text-neutral-100 hover:bg-neutral-800 transition transform hover:rotate-90"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4 4v5h.582M20 20v-5h-.581M5.66 18.34A8 8 0 1118.34 5.66"
-        />
-      </svg>
+      <FiRefreshCw className="w-6 h-6" />
     </button>
   );
 }
@@ -111,11 +100,9 @@ export default function GameBoard({ playerName }) {
       </header>
 
       <div className="mb-4 flex flex-wrap gap-4">
-        {/* Botón con ícono para reiniciar */}
         <ResetButton onClick={resetGame} />
       </div>
 
-      {/* CONTENEDOR DEL GRID */}
       <div className="w-full flex justify-center">
         <div className="grid grid-cols-4 gap-2 w-full max-w-[600px] mx-auto px-2 box-border overflow-hidden">
           {cards.map((card) => (
@@ -129,6 +116,10 @@ export default function GameBoard({ playerName }) {
           ))}
         </div>
       </div>
+
+      <footer className="mt-8 text-center text-neutral-500 text-sm">
+        © 2025 Created by Rodrigo Valladares — Frontend Developer Jr.
+      </footer>
 
       {showWinModal && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-20">
