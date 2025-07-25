@@ -102,19 +102,20 @@ export default function GameBoard({ playerName }) {
         </button>
       </div>
 
-     <div className="w-full flex justify-center px-2">
-       <div className="grid grid-cols-4 gap-2 w-full max-w-[600px]">
-         {cards.map((card) => (
-        <Card
-         key={card.id}
-         card={card}
-         handleClick={handleClick}
-         isFlipped={!!flipped.find((f) => f.id === card.id)}
-         isMatched={matched.includes(card.id)}
-        />
-       ))}
-       </div>
-     </div>
+  <div className="w-full flex justify-center px-2">
+  <div className="grid grid-cols-4 gap-2 w-full max-w-[600px] mx-auto box-border overflow-hidden">
+    {cards.map((card) => (
+      <Card
+        key={card.id}
+        card={card}
+        handleClick={handleClick}
+        isFlipped={!!flipped.find((f) => f.id === card.id)}
+        isMatched={matched.includes(card.id)}
+      />
+    ))}
+  </div>
+</div>
+
 
 
       {showWinModal && (
