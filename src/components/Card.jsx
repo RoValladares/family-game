@@ -1,7 +1,7 @@
 export default function Card({ card, handleClick, isFlipped, isMatched }) {
   return (
     <div
-      className="w-24 h-32 m-2 perspective cursor-pointer"
+      className="w-20 h-28 m-1 perspective perspective cursor-pointer"
       onClick={() => handleClick(card)}
     >
       <div
