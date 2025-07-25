@@ -18,6 +18,33 @@ function shuffleDeck(images) {
     .sort(() => Math.random() - 0.5);
 }
 
+// Componente para botón de reiniciar con icono y tooltip
+function ResetButton({ onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      aria-label="Reiniciar juego"
+      title="Reiniciar juego"
+      className="p-2 rounded-full bg-neutral-900 text-neutral-100 hover:bg-neutral-800 transition flex items-center justify-center"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 4v5h.582M20 20v-5h-.581M5.66 18.34A8 8 0 1118.34 5.66"
+        />
+      </svg>
+    </button>
+  );
+}
+
 export default function GameBoard({ playerName }) {
   const images = [pet1, pet2, pet3, pet4, pet5, pet6, pet7, pet8];
 
@@ -83,40 +110,25 @@ export default function GameBoard({ playerName }) {
         </div>
       </header>
 
-      {/* <p className="text-neutral-500 mb-4 text-center max-w-xs">
-        Gira las cartas y encuentra todas las parejas iguales.
-      </p> */}
-
       <div className="mb-4 flex flex-wrap gap-4">
-        {/* <button
-          className="px-4 py-2 bg-neutral-900 text-neutral-100 rounded hover:bg-neutral-800 transition"
-          onClick={() => setShowWinModal(true)}
-        >
-          Ganar (prueba)
-        </button> */}
-        <button
-          className="px-4 py-2 bg-neutral-900 text-neutral-100 rounded hover:bg-neutral-800 transition"
-          onClick={resetGame}
-        >
-          Reiniciar juego
-        </button>
+        {/* Botón con ícono para reiniciar */}
+        <ResetButton onClick={resetGame} />
       </div>
 
-  <div className="w-full flex justify-center px-2">
-  <div className="grid grid-cols-4 gap-2 w-full max-w-[600px] mx-auto box-border overflow-hidden">
-    {cards.map((card) => (
-      <Card
-        key={card.id}
-        card={card}
-        handleClick={handleClick}
-        isFlipped={!!flipped.find((f) => f.id === card.id)}
-        isMatched={matched.includes(card.id)}
-      />
-    ))}
-  </div>
-</div>
-
-
+      {/* CONTENEDOR DEL GRID */}
+      <div className="w-full flex justify-center">
+        <div className="grid grid-cols-4 gap-2 w-full max-w-[600px] mx-auto px-2 box-border overflow-hidden">
+          {cards.map((card) => (
+            <Card
+              key={card.id}
+              card={card}
+              handleClick={handleClick}
+              isFlipped={!!flipped.find((f) => f.id === card.id)}
+              isMatched={matched.includes(card.id)}
+            />
+          ))}
+        </div>
+      </div>
 
       {showWinModal && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-20">

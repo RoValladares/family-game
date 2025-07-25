@@ -1,16 +1,16 @@
 export default function Card({ card, handleClick, isFlipped, isMatched }) {
   return (
     <div
-      className="w-20 h-28 m-1 perspective perspective cursor-pointer"
+      className="w-20 h-28 perspective cursor-pointer"
       onClick={() => handleClick(card)}
     >
       <div
-        className={`relative w-full h-full transition-transform duration-700 transform preserve-3d ${
+        className={`relative w-full h-full transition-transform duration-500 transform preserve-3d ${
           isFlipped || isMatched ? "rotate-y-180" : ""
         }`}
       >
         {/* Cara trasera */}
-        <div className="absolute w-full h-full backface-hidden bg-neutral-800 rounded-lg flex items-center justify-center text-neutral-100 shadow-lg hover:shadow-xl transition-shadow">
+        <div className="absolute w-full h-full backface-hidden bg-gray-800 rounded-lg flex items-center justify-center text-white">
           <span className="text-2xl font-bold">?</span>
         </div>
 
@@ -19,7 +19,7 @@ export default function Card({ card, handleClick, isFlipped, isMatched }) {
           <img
             src={card.image}
             alt="Mascota"
-            className="w-full h-full rounded-lg object-cover shadow-lg"
+            className="w-full h-full rounded-lg object-cover"
           />
         </div>
       </div>
