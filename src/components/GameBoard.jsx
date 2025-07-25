@@ -83,9 +83,9 @@ export default function GameBoard({ playerName }) {
         </div>
       </header>
 
-      <p className="text-neutral-500 mb-4 text-center max-w-xs">
+      {/* <p className="text-neutral-500 mb-4 text-center max-w-xs">
         Gira las cartas y encuentra todas las parejas iguales.
-      </p>
+      </p> */}
 
       <div className="mb-4 flex flex-wrap gap-4">
         {/* <button
@@ -102,17 +102,21 @@ export default function GameBoard({ playerName }) {
         </button>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 w-full max-w-[600px]">
-        {cards.map((card) => (
-          <Card
-            key={card.id}
-            card={card}
-            handleClick={handleClick}
-            isFlipped={!!flipped.find((f) => f.id === card.id)}
-            isMatched={matched.includes(card.id)}
-          />
-        ))}
-      </div>
+      {/* CONTENEDOR DEL GRID */}  
+<div className="w-full flex justify-center">
+  <div className="grid grid-cols-4 gap-4 px-2 box-border w-full max-w-[600px]">
+    {cards.map((card) => (
+      <Card
+        key={card.id}
+        card={card}
+        handleClick={handleClick}
+        isFlipped={!!flipped.find((f) => f.id === card.id)}
+        isMatched={matched.includes(card.id)}
+      />
+    ))}
+  </div>
+</div>
+
 
       {showWinModal && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-20">
