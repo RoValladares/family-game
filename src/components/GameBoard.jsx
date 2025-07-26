@@ -130,13 +130,16 @@ export default function GameBoard({ playerName }) {
           </div>
         </div>
 
+        {/* 🎉 Modal con transición suave */}
         {showWinModal && (
           <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-20">
-            <div className="bg-blue-100 text-blue-900 rounded-lg p-6 text-center max-w-sm mx-4 shadow-lg">
+            <div
+              className="bg-blue-100 text-blue-900 rounded-lg p-6 text-center max-w-sm mx-4 shadow-lg transform transition-all duration-500 opacity-0 scale-90 animate-fadeInUp"
+            >
               <h2 className="text-3xl font-bold mb-2">
                 ¡Buenale, encontraste todas las parejas! {playerName}!
               </h2>
-              <p className="mb-4">Movimientos realizados: {moves}</p>
+              <p className="mb-4">Movimientos: {moves}</p>
               <button
                 className="bg-blue-900 text-white font-semibold px-4 py-2 rounded hover:bg-blue-800 transition"
                 onClick={() => setShowWinModal(false)}
@@ -148,7 +151,7 @@ export default function GameBoard({ playerName }) {
         )}
       </main>
 
-      <footer className="text-center text-neutral-500 text-sm p-4">
+      <footer className="text-center text-neutral-300 text-sm p-4">
         © 2025 Created by Rodrigo Valladares — Frontend Developer Jr.
       </footer>
     </div>
