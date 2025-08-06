@@ -11,6 +11,10 @@ import bird from "../assets/bird.png";
 import birdPair from "../assets/bird_pair.png";
 import fish from "../assets/fish.png";
 import fishPair from "../assets/fish_pair.png";
+import one from "../assets/one.png";
+import one_pair from "../assets/one_pair.png";
+import two from "../assets/two.png";
+import two_pair from "../assets/two_pair.png";
 
 // Mezcla el deck con pairId
 function shuffleDeck(images) {
@@ -47,6 +51,10 @@ export default function GameBoard({ playerName }) {
     { src: birdPair, pairId: 3 },
     { src: fish, pairId: 4 },
     { src: fishPair, pairId: 4 },
+    { src: one, pairId: 5 },
+    { src: one_pair, pairId: 5 },
+    { src: two, pairId: 6 },
+    { src: two_pair, pairId: 6 }
   ];
 
   const [cards, setCards] = useState(() => shuffleDeck(images));

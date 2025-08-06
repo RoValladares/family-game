@@ -19,7 +19,7 @@ export default function StartScreen({ onStart }) {
         fadeOut ? "opacity-0" : "opacity-100"
       }`}
     >
-      <h1 className="text-5xl font-bold mb-4 text-center">Encuentra los pares.</h1>
+      <h1 className="text-5xl font-bold mb-4 text-center">Encuentra las parejas salvadoreñas.</h1>
 
       <p className="text-blue-200 mb-6 max-w-xs text-center">
         Gira las cartas y encuentra todas las parejas correctas. Escribe tu nombre y comienza.
